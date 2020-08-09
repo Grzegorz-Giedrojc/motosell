@@ -7,7 +7,17 @@
                 {{ post.data_publikacji }}
             </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.tytul }}</a></h2>
-            <p>{{ post.opis|linebreaksbr }}</p>
+            <div class="row">
+              <div class="col-4"><p>{{ post.zdjecie }}</p></div>
+              <div class="col-8">
+                <div class="row">
+                  <p>{{ post.marka }}{{ post.model }}</p>
+                </div>
+                <div class="row">
+                  {{ post.opis }}
+                </div>
+              </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
