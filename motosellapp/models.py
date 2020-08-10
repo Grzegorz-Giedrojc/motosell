@@ -41,7 +41,7 @@ class Oferta(models.Model):
         default=BENZYNA,
     )
     uzytkownik=models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    zdjecie=models.ImageField()
+    zdjecie=models.ImageField(default='default.png', blank=True)
     data_dodania=models.DateTimeField(default=timezone.now)
     data_publikacji=models.DateTimeField(blank=True, null=True)
 
