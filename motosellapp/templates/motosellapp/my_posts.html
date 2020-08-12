@@ -1,9 +1,11 @@
 {% extends 'motosellapp/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-      {% if request.uzytkownik==post.uzytkownik %}
-        uzytkownik : {{post.uzytkownik}}
+    <div>
+      {% for post in posts %}
+        <a class="btn btn-default" href="{% url 'update_post' pk=post.pk %}">Edycja</a>
+        <a class="btn btn-default" href="{% url 'update_post' pk=post.pk %}">Usuń oferte</a>
+        <h1>{{post.tytul}}</h1>
         <p>{{ post.opis}}</p>
         <p>{{ post.kategoria }}</p>
         <p>{{ post.marka }}</p>
@@ -12,8 +14,8 @@
         <p>{{ post.przebieg }}</p>
         <p>{{ post.pojemnosc_skokowa }}</p>
         <p>{{ post.rodzaj_paliwa }}</p>
-        <p>{{ post.uzytkownik }}</p>
         <img src={{ post.zdjecie.url}}/>
-      {% endif %}
+        </br></br></br>
     {% endfor %}
+    </div>
 {% endblock %}

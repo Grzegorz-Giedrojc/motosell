@@ -6,6 +6,7 @@ from .forms import PostForm
 from motosell1.settings import MEDIA_ROOT, MEDIA_URL
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def post_list(request):
     posts = Oferta.objects.filter(data_dodania__lte=timezone.now()).order_by('data_dodania')
@@ -18,7 +19,7 @@ def post_detail(request, pk):
 @login_required(login_url="/accounts/login/")
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.uzytkownik = request.user
@@ -31,22 +32,44 @@ def post_new(request):
 
 @login_required(login_url="/accounts/login/")
 def post_edit(request, pk):
-    post = get_object_or_404(Oferta, pk=pk)
+    post = Oferta.objects.get(Oferta, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.uzytkownik = request.user
             post.data_publikacji = timezone.now()
-            post.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'motosellapp/post_edit.html', {'form': form})
 
+@login_required(login_url="/accounts/login/")
 def my_posts(request):
-    posts = Oferta.objects.filter(data_dodania__lte=timezone.now()).order_by('data_dodania')
-    current_user = request.POST.get('uzytkownik')
-    user_posts = Oferta.objects.filter(uzytkownik=current_user)
+    logged_in_user = request.user
+    logged_in_user_posts = Oferta.objects.filter(uzytkownik=request.user)
 
-    return render(request, 'motosellapp/my_posts.html', {'posts': posts})
+    return render(request, 'motosellapp/my_posts.html', {'posts': logged_in_user_posts})
+
+@login_required(login_url="/accounts/login/")
+def update_post(request, pk):
+    template = 'motosellapp/update_post.html'
+    post = get_object_or_404(Oferta, pk=pk)
+
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        try:
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Zedytowano')
+        except Exception as e:
+            messages.warning(request, 'Edycja nieudana'.format(e))
+    else:
+        form = PostForm(instance=post)
+
+    contex= {
+    'form': form,
+    'post': post,
+    }
+
+    return render(request, template, contex)

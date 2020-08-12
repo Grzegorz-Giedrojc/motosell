@@ -8,6 +8,7 @@
             </div>
         {% endif %}
              <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
         <h1>{{ post.tytul }}</h1>
         <p>{{ post.opis}}</p>
         <p>{{ post.kategoria }}</p>
@@ -18,7 +19,7 @@
         <p>{{ post.pojemnosc_skokowa }}</p>
         <p>{{ post.rodzaj_paliwa }}</p>
         <p>{{ post.uzytkownik }}</p>
-        <img src={{ post.zdjecie.url}}/>
+        <img src="{{post.zdjecie.url}}"/>
 
     </div>
 {% endblock %}

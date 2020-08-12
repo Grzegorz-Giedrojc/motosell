@@ -35,6 +35,12 @@
                   <button type="submit">Sign up</button>
                 </form>
               </li>
+              <li class="list-group-item">
+                <form action="/post/my_posts/" method="post">
+                  {% csrf_token %}
+                  <button type="submit">My posts</button>
+                </form>
+              </li>
             </ul>
           </nav>
 
