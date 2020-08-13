@@ -44,6 +44,8 @@ class Oferta(models.Model):
     )
     uzytkownik=models.ForeignKey('auth.User', on_delete=models.CASCADE)
     zdjecie=models.ImageField(default='default.png')
+    koszt=models.TextField()
+    kontakt=models.CharField(max_length=9, default=123456789)
     data_dodania=models.DateTimeField(default=timezone.now)
     data_publikacji=models.DateTimeField(blank=True, null=True)
     AKTUALNY='aktualny'
@@ -57,6 +59,7 @@ class Oferta(models.Model):
         choices=STATUS,
         default=AKTUALNY,
     )
+
 
     def publish(self):
         self.data_dodania=timezone.now()

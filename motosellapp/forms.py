@@ -6,4 +6,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Oferta
-        fields = ('tytul', 'opis', 'kategoria', 'marka', 'model', 'rok_produkcji', 'przebieg', 'pojemnosc_skokowa', 'rodzaj_paliwa', 'uzytkownik', 'zdjecie', 'data_dodania', 'data_publikacji')
+        fields = ('tytul', 'opis', 'kategoria', 'marka', 'model', 'rok_produkcji', 'przebieg', 'pojemnosc_skokowa', 'rodzaj_paliwa','koszt', 'kontakt', 'uzytkownik', 'zdjecie', 'data_dodania', 'data_publikacji', 'status')

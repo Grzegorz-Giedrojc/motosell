@@ -2,57 +2,115 @@
 <html lang='pl'>
     <head>
         <title>MotoSELL - nowe i używane samochody</title>
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="MotoSELL - nowe i używane samochody" />
         <meta name="keywords" content="motosell, nowy, używany, samochód, samochody, osobowy, ciężarowy, motocykl," />
         <meta name="author" content="Grzegorz Giedrojć" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{% static 'css/motosellapp.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style_motosellapp.css' %}" >
     </head>
     <body>
-      <div class="page-header d-flex justify-content-between">
+      <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+          <a class="navbar-brand" href="/">&nbsp;MotoSELL&nbsp;</a>
+          <div>Witaj {{request.user.username}}&nbsp;&nbsp;&nbsp;</div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-
-          <h1 ><a href="/">MotoSELL</a></h1>
-          <nav>
-            <ul class="row">
-              <li class="list-group-item">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
                 <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
                   {% csrf_token %}
-                  <button type="submit">Logout</button>
+                  <button  class="nav-link" type="submit">Wyloguj&nbsp;się</button>
                 </form>
               </li>
-              <li class="list-group-item">
+              <li class="nav-item">
                 <form class="login-link" action="{% url 'accounts:login' %}" method="post">
                   {% csrf_token %}
-                  <button type="submit">Login</button>
+                  <button  class="nav-link"  type="submit">Logowanie</button>
                 </form>
               </li>
-              <li class="list-group-item">
+              <li class="nav-item">
                 <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
                   {% csrf_token %}
-                  <button type="submit">Sign up</button>
+                  <button   class="nav-link" type="submit">Rejestracja</button>
                 </form>
               </li>
-              <li class="list-group-item">
+              <li class="nav-item">
                 <form action="/post/my_posts/" method="post">
                   {% csrf_token %}
-                  <button type="submit">My posts</button>
+                  <button  class="nav-link"  type="submit">Moje&nbsp;oferty</button>
                 </form>
               </li>
+              <li class="nav-item">
+                <form action="{% url 'post_new' %}" method="post">
+                {% csrf_token %}
+                <button class="nav-link" type="button submit">Dodaj&nbsp;ofertę</button>
+              </li>
             </ul>
-          </nav>
-
-          <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">+</span></a>
-      </div>
-        <div class="content container">
+            <form class="form-inline my-2 my-sm-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Search" style="max-width: 300px;">
+              <button class="btn btn-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+          </div>
+        </nav>
+			</header>
+        <!--<header>
+          <div class="page-header d-flex justify-content-between">
+            <h1 ><a href="/">MotoSELL</a></h1>
+            <h3> {{request.user.username}}</h3>
+            <nav>
+              <ul class="row">
+                <li class="list-group-item">
+                  <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                  </form>
+                </li>
+                <li class="list-group-item">
+                  <form class="login-link" action="{% url 'accounts:login' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Login</button>
+                  </form>
+                </li>
+                <li class="list-group-item">
+                  <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Sign up</button>
+                  </form>
+                </li>
+                <li class="list-group-item">
+                  <form action="/post/my_posts/" method="post">
+                    {% csrf_token %}
+                    <button type="submit">My posts</button>
+                  </form>
+                </li>
+                <li class="list-group-item">
+                  <form action="{% url 'post_new' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Dodaj&nbsp;oferte</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      </header>-->
+      <br><br><br><br>
+          <div class="content container">
             <div class="row">
-                <div class="col-md-8">
-                    {% block content %}
-                    {% endblock %}
-                </div>
+                {% block content %}
+                {% endblock %}
             </div>
-        </div>
+          </div>
+          <footer class="page-footer font-small pt-4 fixed-bottom">
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+              <a href="/"> MotoSELL.pl</a>
+            </div>
+          </footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     </body>
 </html>

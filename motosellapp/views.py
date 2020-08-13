@@ -10,6 +10,8 @@ from django.contrib import messages
 
 def post_list(request):
     posts = Oferta.objects.filter(data_dodania__lte=timezone.now()).order_by('data_dodania')
+    posts = Oferta.objects.filter(status='aktualny')
+
     return render(request, 'motosellapp/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
@@ -42,7 +44,7 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'motosellapp/post_edit.html', {'form': form})
+    return render(request, 'motosellapp/post_detail.html', {'form': form})
 
 @login_required(login_url="/accounts/login/")
 def my_posts(request):

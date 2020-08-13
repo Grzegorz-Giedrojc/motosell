@@ -7,19 +7,23 @@
                 {{ post.data_publikacji }}
             </div>
         {% endif %}
-             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
         <h1>{{ post.tytul }}</h1>
-        <p>{{ post.opis}}</p>
-        <p>{{ post.kategoria }}</p>
-        <p>{{ post.marka }}</p>
-        <p>{{ post.model }}</p>
-        <p>{{ post.rok_produkcji }}</p>
-        <p>{{ post.przebieg }}</p>
-        <p>{{ post.pojemnosc_skokowa }}</p>
-        <p>{{ post.rodzaj_paliwa }}</p>
-        <p>{{ post.uzytkownik }}</p>
-        <img src="{{post.zdjecie.url}}"/>
-
-    </div>
+          <div class="pic_detail">
+            <img src="{{post.zdjecie.url}}" alt= "zdjecie samochodu"/>
+          </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ post.opis}}</li>
+        <li class="list-group-item">Kategoria: {{ post.kategoria }}</li>
+        <li class="list-group-item">Marka: {{ post.marka }}</li>
+        <li class="list-group-item">Model: {{ post.model }}</li>
+        <li class="list-group-item">Rok produkcji: {{ post.rok_produkcji }}</li>
+        <li class="list-group-item">Przebieg: {{ post.przebieg }}</li>
+        <li class="list-group-item">Pojemność skokowa: {{ post.pojemnosc_skokowa }}</li>
+        <li class="list-group-item">Rodzaj paliwa: {{ post.rodzaj_paliwa }}</li>
+        <li class="list-group-item">Kontakt: {{ post.koszt}}</li>
+        <li class="list-group-item">Kontakt: {{ post.kontakt }}</li>
+        <li class="list-group-item">{{ post.status }}</li>
+      </ul>
+      <br><br>
 {% endblock %}

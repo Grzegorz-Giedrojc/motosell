@@ -1,26 +1,27 @@
 {% extends 'motosellapp/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.data_publikacji }}
-            </div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.tytul }}</a></h2>
-            <div class="row">
-              <div class="col-4">
-                <p><img src="{{ post.zdjecie.url }}" height="100%"/></p>
-              </div>
-              <div class="col-8">
-                <div class="row">
-                  <p>{{ post.marka }}{{ post.model }}</p>
-                </div>
-                <div class="row">
-                  {{ post.opis }}
-                </div>
 
+    {% for post in posts %}
+        <div class="post" style="max-width: 1000px;">
+          <div class="date">
+              <p>Dodano: {{ post.data_publikacji }}</p>
+          </div>
+          <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.tytul }}</a></h2>
+          <div class="row">
+            <img src="{{ post.zdjecie.url }}" class="col-5 img-fluid" style="width: 100%;"/>
+            <div class="col-7"">
+              <div>
+                <p>{{ post.marka }} {{ post.model }} {{post.pojemnosc_skokowa}} {{post.rodzaj_paliwa}} {{ post.koszt }}</p>
               </div>
+              <div>
+                <p><span class="list_opis">{{ post.opis }}</span></p>
+              </div>
+
             </div>
+          </div>
+          <br><br>
         </div>
+
     {% endfor %}
 {% endblock %}

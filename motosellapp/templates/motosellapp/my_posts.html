@@ -3,9 +3,17 @@
 {% block content %}
     <div>
       {% for post in posts %}
-        <a class="btn btn-default" href="{% url 'update_post' pk=post.pk %}">Edycja</a>
-        <a class="btn btn-default" href="{% url 'update_post' pk=post.pk %}">Usuń oferte</a>
-        <h1>{{post.tytul}}</h1>
+      <div class="row justify-content-between">
+          <div class="col-4">
+            <h1>{{post.tytul}}</h1>
+          </div>
+          <div class="col-1">
+            <a class="btn btn-primary " href="{% url 'update_post'   pk=post.pk %}">Edycja</a>
+          </div>
+        </div>
+        <div>
+          <img src="{{post.zdjecie.url}}" alt= "zdjecie samochodu" style="max-width:500px;"/>
+        </div>
         <p>{{ post.opis}}</p>
         <p>{{ post.kategoria }}</p>
         <p>{{ post.marka }}</p>
@@ -14,7 +22,6 @@
         <p>{{ post.przebieg }}</p>
         <p>{{ post.pojemnosc_skokowa }}</p>
         <p>{{ post.rodzaj_paliwa }}</p>
-        <img src={{ post.zdjecie.url}}/>
         </br></br></br>
     {% endfor %}
     </div>
