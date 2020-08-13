@@ -90,7 +90,7 @@ a:hover{
   padding: 10px;
   background-color: #dedede;
   border-radius: 10px;
-  transition: transform .2s;
+  /*transition: transform .2s;*/
 }
 
 .navbar-brand:hover{

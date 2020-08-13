@@ -4,10 +4,10 @@
 
   <h1>Logowanie</h1>
   <form class="site-form" action="{% url 'accounts:login' %}" method="post">
-    {% csrf_token %}
+    {% csrf_token %}<br>
     {{ form }}
     <br><br>
-    <div style="margin-left: 10px;">
+    <div style="margin-left: 50px;">
       <input type="submit" value="Zaloguj się">
     </div>
   </form>

@@ -27,7 +27,7 @@ class Oferta(models.Model):
     model=models.CharField(max_length=100)
     rok_produkcji=models.IntegerField()
     przebieg=models.IntegerField()
-    pojemnosc_skokowa=models.FloatField()
+    pojemnosc_skokowa=models.IntegerField()
 
     BENZYNA='benzyna'
     DIESEL='diesel'
@@ -44,8 +44,8 @@ class Oferta(models.Model):
     )
     uzytkownik=models.ForeignKey('auth.User', on_delete=models.CASCADE)
     zdjecie=models.ImageField(default='default.png')
-    koszt=models.TextField()
-    kontakt=models.CharField(max_length=9, default=123456789)
+    koszt=models.IntegerField()
+    kontakt=models.IntegerField(max_length=9, default=123456789)
     data_dodania=models.DateTimeField(default=timezone.now)
     data_publikacji=models.DateTimeField(blank=True, null=True)
     AKTUALNY='aktualny'
