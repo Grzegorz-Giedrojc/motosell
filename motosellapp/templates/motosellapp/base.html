@@ -14,45 +14,45 @@
       <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
           <a class="navbar-brand" href="/">&nbsp;MotoSELL&nbsp;</a>
-          <div>Witaj {{request.user.username}}&nbsp;&nbsp;&nbsp;</div>
+          <div>Witaj&nbsp;{{request.user.username}}&nbsp;&nbsp;&nbsp;</div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse vertical_middle" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link" type="submit">Wyloguj&nbsp;się</button>
+                  <button  class="nav-link btn btn-blue" type="submit" style="color:black;">Wyloguj&nbsp;się</button>
                 </form>
               </li>
               <li class="nav-item">
                 <form class="login-link" action="{% url 'accounts:login' %}" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link"  type="submit">Logowanie</button>
+                  <button  class="nav-link btn btn-blue"  type="submit" style="color:black;">Logowanie</button>
                 </form>
               </li>
               <li class="nav-item">
                 <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
                   {% csrf_token %}
-                  <button   class="nav-link" type="submit">Rejestracja</button>
+                  <button class="nav-link btn btn-blue" type="submit" style="color:black;">Rejestracja</button>
                 </form>
               </li>
               <li class="nav-item">
                 <form action="/post/my_posts/" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link"  type="submit">Moje&nbsp;oferty</button>
+                  <button  class="nav-link btn btn-blue"  type="submit" style="color:black;">Moje&nbsp;oferty</button>
                 </form>
               </li>
               <li class="nav-item">
                 <form action="{% url 'post_new' %}" method="post">
                 {% csrf_token %}
-                <button class="nav-link" type="button submit">Dodaj&nbsp;ofertę</button>
+                <button class="nav-link btn btn-blue" type="submit" style="color:black;">Dodaj&nbsp;ofertę</button>
               </li>
             </ul>
             <form class="form-inline my-2 my-sm-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Search" style="max-width: 300px;">
+              <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Search" style="max-width: 300px; margin-left:10px;">
               <button class="btn btn-success my-2 my-sm-0" type="submit">Szukaj</button>
             </form>
           </div>
@@ -98,17 +98,19 @@
           </div>
       </header>-->
       <br><br><br><br>
-          <div class="content container">
-            <div class="row">
-                {% block content %}
-                {% endblock %}
+          <div class="container">
+            <div class="content">
+                  {% block content %}
+                  {% endblock %}
             </div>
           </div>
-          <footer class="page-footer font-small pt-4 fixed-bottom">
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
-              <a href="/"> MotoSELL.pl</a>
+
+          <footer class="page-footer font-small pt-4">
+            <div class="footer-copyright text-center">
+              © 2020 Copyright: <a href="/"> MotoSELL.pl</a>
             </div>
           </footer>
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

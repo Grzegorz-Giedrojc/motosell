@@ -3,25 +3,36 @@
 {% block content %}
 
     {% for post in posts %}
-        <div class="post" style="max-width: 1000px;">
-          <div class="date">
-              <p>Dodano: {{ post.data_publikacji }}</p>
-          </div>
-          <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.tytul }}</a></h2>
-          <div class="row">
-            <img src="{{ post.zdjecie.url }}" class="col-5 img-fluid" style="width: 100%;"/>
-            <div class="col-7"">
-              <div>
-                <p>{{ post.marka }} {{ post.model }} {{post.pojemnosc_skokowa}} {{post.rodzaj_paliwa}} {{ post.koszt }}</p>
-              </div>
-              <div>
-                <p><span class="list_opis">{{ post.opis }}</span></p>
+        <div class="post">
+          <div class="oferta_lista">
+            <div class="date">
+                <p>Dodano: {{ post.data_publikacji }}</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4">
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                  <img src="{{ post.zdjecie.url }}" class="img-fluid rounded"/>
+                </a>
               </div>
 
+              <div class="col-6">
+                <div>
+                  <p><h3><a href="{% url 'post_detail' pk=post.pk %}">&nbsp;{{ post.tytul }}</a></h3></p>
+                </div>
+                <div>
+                  <p>{{ post.marka }} {{ post.model }} {{post.rok_produkcji}} {{post.przebieg}} km {{post.pojemnosc_skokowa}} cm3 {{post.rodzaj_paliwa}}</p>
+                </div>
+                <div>
+                  <p><span class="list_opis">{{ post.opis }}</span></p>
+                </div>
+              </div>
+              <div class="col-2">
+                <h4 style="color:red;"> {{ post.koszt }}</h4>
+              </div>
             </div>
           </div>
-          <br><br>
-        </div>
-
+      </div>
+      <br>
     {% endfor %}
 {% endblock %}

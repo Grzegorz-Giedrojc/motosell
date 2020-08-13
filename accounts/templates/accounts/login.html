@@ -2,10 +2,13 @@
 
 {% block content %}
 
-  <h1>Log in</h1>
+  <h1>Logowanie</h1>
   <form class="site-form" action="{% url 'accounts:login' %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Login">
+    <br><br>
+    <div style="margin-left: 10px;">
+      <input type="submit" value="Zaloguj się">
+    </div>
   </form>
 {% endblock %}

@@ -1,28 +1,34 @@
 {% extends 'motosellapp/base.html' %}
 
 {% block content %}
-    <div>
+    <div class="post">
       {% for post in posts %}
-      <div class="row justify-content-between">
+        <div class="row justify-content-between">
           <div class="col-4">
             <h1>{{post.tytul}}</h1>
           </div>
-          <div class="col-1">
+          <div class="col-3">
             <a class="btn btn-primary " href="{% url 'update_post'   pk=post.pk %}">Edycja</a>
           </div>
         </div>
-        <div>
-          <img src="{{post.zdjecie.url}}" alt= "zdjecie samochodu" style="max-width:500px;"/>
+        <div class="container_100">
+          <div class="pic_my_post">
+            <img src="{{post.zdjecie.url}}" class="img-fluid rounded" alt= "zdjecie samochodu"/>
+          </div>
         </div>
-        <p>{{ post.opis}}</p>
-        <p>{{ post.kategoria }}</p>
-        <p>{{ post.marka }}</p>
-        <p>{{ post.model }}</p>
-        <p>{{ post.rok_produkcji }}</p>
-        <p>{{ post.przebieg }}</p>
-        <p>{{ post.pojemnosc_skokowa }}</p>
-        <p>{{ post.rodzaj_paliwa }}</p>
-        </br></br></br>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-justify">{{post.opis}}</li>
+          <li class="list-group-item">Kategoria: {{ post.kategoria }}</li>
+          <li class="list-group-item">Marka: {{ post.marka }}</li>
+          <li class="list-group-item">Model: {{ post.model }}</li>
+          <li class="list-group-item">Rok produkcji: {{ post.rok_produkcji }}</li>
+          <li class="list-group-item">Przebieg: {{ post.przebieg }}</li>
+          <li class="list-group-item">Pojemność skokowa: {{ post.pojemnosc_skokowa }}</li>
+          <li class="list-group-item">Rodzaj paliwa: {{ post.rodzaj_paliwa }}</li>
+          <li class="list-group-item">Kontakt: {{ post.koszt}}</li>
+          <li class="list-group-item">Kontakt: {{ post.kontakt }}</li>
+          <li class="list-group-item">{{ post.status }}</li>
+        </ul>
     {% endfor %}
     </div>
 {% endblock %}

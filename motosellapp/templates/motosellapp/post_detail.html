@@ -9,11 +9,13 @@
         {% endif %}
 
         <h1>{{ post.tytul }}</h1>
+        <div class="container_100">
           <div class="pic_detail">
-            <img src="{{post.zdjecie.url}}" alt= "zdjecie samochodu"/>
+            <img src="{{post.zdjecie.url}}" class="img-fluid rounded" alt= "zdjecie samochodu"/>
           </div>
+        </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ post.opis}}</li>
+        <li class="list-group-item text-justify">{{post.opis}}</li>
         <li class="list-group-item">Kategoria: {{ post.kategoria }}</li>
         <li class="list-group-item">Marka: {{ post.marka }}</li>
         <li class="list-group-item">Model: {{ post.model }}</li>
@@ -21,9 +23,10 @@
         <li class="list-group-item">Przebieg: {{ post.przebieg }}</li>
         <li class="list-group-item">Pojemność skokowa: {{ post.pojemnosc_skokowa }}</li>
         <li class="list-group-item">Rodzaj paliwa: {{ post.rodzaj_paliwa }}</li>
-        <li class="list-group-item">Kontakt: {{ post.koszt}}</li>
+        <li class="list-group-item">Koszt: {{ post.koszt}}</li>
         <li class="list-group-item">Kontakt: {{ post.kontakt }}</li>
         <li class="list-group-item">{{ post.status }}</li>
       </ul>
-      <br><br>
+    </div>
+
 {% endblock %}
