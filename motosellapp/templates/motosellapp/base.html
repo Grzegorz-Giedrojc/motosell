@@ -12,50 +12,67 @@
     </head>
     <body>
       <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
           <a class="navbar-brand" href="/">&nbsp;MotoSELL&nbsp;</a>
-          <div>Witaj&nbsp;{{request.user.username}}&nbsp;&nbsp;&nbsp;</div>
+          {% if user.is_authenticated %}
+          <div>
+            Witaj&nbsp;{{request.user.username}}&nbsp;&nbsp;&nbsp
+          </div>
+          {% endif %}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse vertical_middle" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-aut">
+              {% if user.is_authenticated %}
+              <li class="nav-item border_right">
+                <form class="logout-link " action="{% url 'accounts:logout' %}" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link btn btn-blue" type="submit" style="color:black;">Wyloguj&nbsp;się</button>
+                  <button  class="nav-link btn btn-grey" type="submit" style="color:black;">Wyloguj&nbsp;się</button>
                 </form>
-              </li>
-              <li class="nav-item">
+              </li>{% endif %}
+              <li class="nav-item border_right" >
                 <form class="login-link" action="{% url 'accounts:login' %}" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link btn btn-blue"  type="submit" style="color:black;">Logowanie</button>
+                  <button  class="nav-link btn btn-grey"  type="submit" style="color:black;">Logowanie</button>
                 </form>
               </li>
-              <li class="nav-item">
-                <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
-                  {% csrf_token %}
-                  <button class="nav-link btn btn-blue" type="submit" style="color:black;">Rejestracja</button>
-                </form>
-              </li>
-              <li class="nav-item">
+              {% if user.is_authenticated %}
+                <li class="nav-item border_right">
+                  <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
+                    {% csrf_token %}
+                    <button class="nav-link btn btn-grey" type="submit" style="color:black; ">Rejestracja</button>
+                  </form>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <form class="signup-link" action="{% url 'accounts:signup' %}" method="post">
+                    {% csrf_token %}
+                    <button class="nav-link btn btn-grey" type="submit" style="color:black; ">Rejestracja</button>
+                  </form>
+                </li>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <li class="nav-item border_right">
                 <form action="/post/my_posts/" method="post">
                   {% csrf_token %}
-                  <button  class="nav-link btn btn-blue"  type="submit" style="color:black;">Moje&nbsp;oferty</button>
+                  <button  class="nav-link btn btn-grey"  type="submit" style="color:black;">Moje&nbsp;oferty</button>
                 </form>
               </li>
-              <li class="nav-item">
-                <form action="{% url 'post_new' %}" method="post">
+              <li class="nav-item" style="border-left: 1px;">
+                <form action="{% url 'post_new' %}" method="post"/>
                 {% csrf_token %}
-                <button class="nav-link btn btn-blue" type="submit" style="color:black;">Dodaj&nbsp;ofertę</button>
+                <button class="nav-link btn btn-grey" type="submit" style="color:black;">Dodaj&nbsp;ofertę</button>
               </li>
+              {% endif %}
             </ul>
             <form class="form-inline my-2 my-sm-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Search" style="max-width: 300px; margin-left:10px;">
-              <button class="btn btn-success my-2 my-sm-0" type="submit">Szukaj</button>
+              <input class="form-control mr-sm-2 search2" type="search" placeholder="Wyszukaj" aria-label="Search">
+              <button class="btn btn-success my-2 my-sm-0" type="submit" >Szukaj</button>
             </form>
-          </div>
+        </div>
         </nav>
 			</header>
         <!--<header>

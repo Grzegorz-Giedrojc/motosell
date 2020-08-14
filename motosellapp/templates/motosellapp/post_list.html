@@ -4,9 +4,9 @@
 
     {% for post in posts %}
         <div class="post">
-          <div class="oferta_lista">
+          <div class="">
             <div class="date">
-                <p>Dodano: {{ post.data_publikacji }}</p>
+                <p>Dodano:&nbsp;{{ post.data_publikacji }}</p>
             </div>
 
             <div class="row">
@@ -18,20 +18,20 @@
 
               <div class="col-6">
                 <div>
-                  <p><h3><a href="{% url 'post_detail' pk=post.pk %}">&nbsp;{{ post.tytul }}</a></h3></p>
+                  <p><h3><a href="{% url 'post_detail' pk=post.pk %}" class="opis_lista">{{ post.tytul }}</a></h3></p>
                 </div>
                 <div>
-                  <p>{{ post.marka }} {{ post.model }} {{post.rok_produkcji}} {{post.przebieg}} km {{post.pojemnosc_skokowa}} cm3 {{post.rodzaj_paliwa}}</p>
+                  <p>{{ post.marka }} {{ post.model }} {{post.rok_produkcji}} {{post.przebieg}}&nbsp;km {{post.pojemnosc_skokowa}}&nbsp;cm3 {{post.rodzaj_paliwa}}</p>
                 </div>
                 <div>
                   <p><span class="list_opis">{{ post.opis }}</span></p>
                 </div>
               </div>
               <div class="col-2">
-                <h4 style="color:red;"> {{ post.koszt }} zł</h4>
+                <h4 style="color:red; font-size: 2.5vw"> {{ post.koszt }}&nbsp;zł</h4>
+              </div>
               </div>
             </div>
-          </div>
       </div>
       <br>
     {% endfor %}
